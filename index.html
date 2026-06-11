@@ -3,92 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#0B0E0C">
-<title>TheDeck AI — Property Watch</title>
+<meta name="theme-color" content="#F7F5F0">
+<title>Costa Rica Cameras</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0B0E0C; --panel:#111612; --line:#243026;
-    --text:#DCE7DE; --muted:#76857A;
-    --person:#E8A33D; --vehicle:#5BA8D4; --animal:#4FA871;
-    --noise:#5A6660; --urgent:#E05C4B;
-    --radius:10px;
+    --bg:#F7F5F0; --panel:#FFFFFF; --line:#E2DED6;
+    --text:#1A1A1A; --muted:#8C8578;
+    --person:#C4620A; --vehicle:#2668A8; --animal:#1A7D42;
+    --noise:#A8A198; --urgent:#C42B1C;
+    --accent:#1A7D42;
+    --radius:12px;
+    --shadow:0 1px 3px rgba(0,0,0,.06);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{background:var(--bg)}
   body{
-    font-family:'Space Grotesk',system-ui,sans-serif;
+    font-family:'DM Sans',system-ui,sans-serif;
     background:var(--bg);color:var(--text);
-    min-height:100vh;padding:16px;max-width:880px;margin:0 auto;
+    min-height:100vh;padding:20px 16px;max-width:880px;margin:0 auto;
   }
+
   /* ---------- header ---------- */
-  header{display:flex;align-items:baseline;justify-content:space-between;
-    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
-  h1{font-size:1.15rem;font-weight:700;letter-spacing:.02em}
-  h1 span{color:var(--animal)}
-  .live{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);
-    display:flex;align-items:center;gap:6px}
-  .live::before{content:"";width:7px;height:7px;border-radius:50%;
-    background:var(--animal);animation:pulse 2.2s ease-in-out infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  @media (prefers-reduced-motion: reduce){.live::before{animation:none}}
+  header{display:flex;align-items:center;justify-content:space-between;
+    padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand svg{flex-shrink:0}
+  h1{font-size:1.2rem;font-weight:700;letter-spacing:-.01em;color:var(--text)}
+  h1 em{font-style:normal;color:var(--accent);font-weight:600}
+  .live{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--accent);
+    display:flex;align-items:center;gap:6px;
+    background:#E8F5ED;padding:4px 10px;border-radius:999px}
+  .live::before{content:"";width:6px;height:6px;border-radius:50%;
+    background:var(--accent);animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @media(prefers-reduced-motion:reduce){.live::before{animation:none}}
 
   /* ---------- stats strip ---------- */
-  .stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
-    font-family:'IBM Plex Mono',monospace;font-size:.74rem}
+  .stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
   .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:8px 12px;color:var(--muted)}
-  .stat b{color:var(--text);font-weight:600;margin-right:4px}
+    padding:10px 14px;font-size:.82rem;color:var(--muted);box-shadow:var(--shadow)}
+  .stat b{color:var(--text);font-weight:700;margin-right:4px;font-size:.95rem}
 
   /* ---------- controls ---------- */
-  .controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-  .controls h2{font-size:.78rem;font-weight:500;color:var(--muted);
-    text-transform:uppercase;letter-spacing:.12em}
-  .toggle{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);
-    background:none;border:1px solid var(--line);border-radius:999px;
-    padding:5px 12px;cursor:pointer}
-  .toggle.on{color:var(--animal);border-color:var(--animal)}
-  .toggle:focus-visible{outline:2px solid var(--animal);outline-offset:2px}
+  .controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .controls h2{font-size:.75rem;font-weight:600;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.1em}
+  .toggle{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;
+    padding:5px 14px;cursor:pointer;box-shadow:var(--shadow);transition:all .15s}
+  .toggle.on{color:var(--accent);border-color:var(--accent);background:#E8F5ED}
+  .toggle:hover{border-color:var(--accent)}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-  /* ---------- the log (signature) ---------- */
+  /* ---------- alert log ---------- */
   .log{display:flex;flex-direction:column;gap:8px}
   .row{
     background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;
-    display:grid;grid-template-columns:auto 1fr;gap:4px 14px;cursor:pointer
+    padding:14px 16px;font-size:.85rem;box-shadow:var(--shadow);
+    display:grid;grid-template-columns:auto 1fr;gap:4px 16px;cursor:pointer;
+    transition:border-color .15s
   }
+  .row:hover{border-color:#C8C3BA}
   .row.urgent{border-left:3px solid var(--urgent)}
-  .ts{color:var(--muted);font-size:.72rem;grid-column:1}
-  .cam{color:var(--text);font-weight:600;grid-column:1;text-transform:uppercase;font-size:.74rem}
-  .meta{grid-column:2;grid-row:1 / span 2;display:flex;flex-direction:column;gap:6px}
+  .ts{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem;grid-column:1}
+  .cam{color:var(--text);font-weight:700;grid-column:1;text-transform:uppercase;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.04em}
+  .meta{grid-column:2;grid-row:1/span 2;display:flex;flex-direction:column;gap:6px}
   .chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-  .chip{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-    padding:2px 9px;border-radius:999px;border:1px solid}
-  .chip.person{color:var(--person);border-color:var(--person)}
-  .chip.vehicle{color:var(--vehicle);border-color:var(--vehicle)}
-  .chip.animal{color:var(--animal);border-color:var(--animal)}
-  .chip.false_alarm,.chip.unclear,.chip.unknown{color:var(--noise);border-color:var(--noise)}
+  .chip{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 10px;border-radius:999px;border:1.5px solid}
+  .chip.person{color:var(--person);border-color:var(--person);background:#FEF3E8}
+  .chip.vehicle{color:var(--vehicle);border-color:var(--vehicle);background:#EBF3FC}
+  .chip.animal{color:var(--animal);border-color:var(--animal);background:#E8F5ED}
+  .chip.false_alarm,.chip.unclear,.chip.unknown{color:var(--noise);border-color:var(--noise);background:#F3F1ED}
   .pips{color:var(--muted);font-size:.7rem;letter-spacing:2px}
   .pips .hot{color:var(--urgent)}
-  .sum{color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.86rem;line-height:1.4}
-  .sent{color:var(--muted);font-size:.68rem}
-  .snap{margin-top:8px;border-radius:8px;max-width:100%;border:1px solid var(--line);display:none}
+  .sum{color:var(--text);font-size:.88rem;line-height:1.45}
+  .sent{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:.66rem}
+  .snap{margin-top:10px;border-radius:8px;max-width:100%;border:1px solid var(--line);display:none}
   .row.open .snap{display:block}
 
-  .empty{border:1px dashed var(--line);border-radius:var(--radius);
-    padding:34px 20px;text-align:center;color:var(--muted);
-    font-size:.85rem;line-height:1.6}
-  .empty code{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:.78rem}
+  .empty{border:2px dashed var(--line);border-radius:var(--radius);
+    padding:40px 20px;text-align:center;color:var(--muted);
+    font-size:.88rem;line-height:1.7;background:var(--panel)}
+  .empty code{font-family:'JetBrains Mono',monospace;color:var(--text);
+    font-size:.76rem;background:#EDEAE4;padding:2px 6px;border-radius:4px}
 
-  footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);
-    font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted);
+  footer{margin-top:24px;padding-top:14px;border-top:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);
     display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
 <header>
-  <h1>THEDECK<span>·</span>AI</h1>
+  <div class="brand">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="28" height="28" rx="7" fill="#1A7D42"/>
+      <circle cx="14" cy="12" r="5" stroke="#fff" stroke-width="1.8" fill="none"/>
+      <circle cx="14" cy="12" r="1.8" fill="#fff"/>
+      <rect x="9" y="18" width="10" height="3" rx="1.5" fill="#fff" opacity=".7"/>
+    </svg>
+    <h1>Costa Rica <em>Cameras</em></h1>
+  </div>
   <div class="live" id="liveLabel">watching</div>
 </header>
 
@@ -100,9 +118,7 @@
 </div>
 
 <div class="log" id="log">
-  <div class="empty">
-    Connecting…
-  </div>
+  <div class="empty">Connecting…</div>
 </div>
 
 <footer>
@@ -111,10 +127,8 @@
 </footer>
 
 <script>
-/* ============ CONFIG — fill these in ============ */
 const SUPABASE_URL = "https://qruccaoyszgftgicdfxq.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFydWNjYW95c3pnZnRnaWNkZnhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExODkzOTgsImV4cCI6MjA5Njc2NTM5OH0.UmBbWAV4Scm02pgZfvbxkqtlRfxwEtC7-4Ib2xv0f6k";
-/* ================================================= */
 
 let hideNoise = true;
 let alerts = [];
@@ -152,20 +166,19 @@ function render() {
     ? alerts.filter(a => a.category !== "false_alarm")
     : alerts;
 
-  // stats for today
   const today = new Date().toDateString();
   const todays = alerts.filter(a => new Date(a.created_at).toDateString() === today);
   const filtered = todays.filter(a => a.category === "false_alarm").length;
-  const sent = todays.filter(a => a.notified).length;
+  const real = todays.filter(a => a.category !== "false_alarm").length;
   $stats.innerHTML = `
     <div class="stat"><b>${todays.length}</b>events today</div>
     <div class="stat"><b>${filtered}</b>false alarms filtered</div>
-    <div class="stat"><b>${sent}</b>sent to WhatsApp</div>`;
+    <div class="stat"><b>${real}</b>real alerts</div>`;
 
   if (!shown.length) {
-    $log.innerHTML = `<div class="empty">All quiet on the deck. 🌴<br><br>
-      Alerts appear here the moment a camera emails the pipeline.<br>
-      Test it: send any email with a photo attached to your CloudMailin address.</div>`;
+    $log.innerHTML = `<div class="empty">All quiet. 🌴<br><br>
+      Alerts appear here the moment a camera triggers the AI pipeline.<br>
+      Send a test email with a photo to your CloudMailin address to try it.</div>`;
     return;
   }
 
@@ -183,7 +196,7 @@ function render() {
         <div class="chips">
           <span class="chip ${esc(a.category)}">${esc((a.category||"event").replace("_"," "))}</span>
           <span class="pips">${pips}</span>
-          ${a.notified ? `<span class="sent">→ whatsapp</span>` : ""}
+          ${a.notified ? `<span class="sent">✓ notified</span>` : ""}
         </div>
         <div class="sum">${esc(a.summary || "")}</div>
         ${a.snapshot_url ? `<img class="snap" loading="lazy" src="${esc(a.snapshot_url)}" alt="Snapshot from ${esc(a.camera)}">` : ""}
@@ -202,7 +215,7 @@ function esc(s){return String(s ?? "").replace(/[&<>"']/g, c =>
   ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 
 fetchAlerts();
-setInterval(fetchAlerts, 20000); // poll every 20s
+setInterval(fetchAlerts, 20000);
 </script>
 </body>
 </html>
