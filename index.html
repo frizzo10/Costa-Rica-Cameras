@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0B0E0C">
+<title>TheDeck AI — Property Watch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E0C; --panel:#111612; --line:#243026;
+    --text:#DCE7DE; --muted:#76857A;
+    --person:#E8A33D; --vehicle:#5BA8D4; --animal:#4FA871;
+    --noise:#5A6660; --urgent:#E05C4B;
+    --radius:10px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--bg)}
+  body{
+    font-family:'Space Grotesk',system-ui,sans-serif;
+    background:var(--bg);color:var(--text);
+    min-height:100vh;padding:16px;max-width:880px;margin:0 auto;
+  }
+  /* ---------- header ---------- */
+  header{display:flex;align-items:baseline;justify-content:space-between;
+    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:14px}
+  h1{font-size:1.15rem;font-weight:700;letter-spacing:.02em}
+  h1 span{color:var(--animal)}
+  .live{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);
+    display:flex;align-items:center;gap:6px}
+  .live::before{content:"";width:7px;height:7px;border-radius:50%;
+    background:var(--animal);animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media (prefers-reduced-motion: reduce){.live::before{animation:none}}
+
+  /* ---------- stats strip ---------- */
+  .stats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;
+    font-family:'IBM Plex Mono',monospace;font-size:.74rem}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:8px 12px;color:var(--muted)}
+  .stat b{color:var(--text);font-weight:600;margin-right:4px}
+
+  /* ---------- controls ---------- */
+  .controls{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .controls h2{font-size:.78rem;font-weight:500;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.12em}
+  .toggle{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);
+    background:none;border:1px solid var(--line);border-radius:999px;
+    padding:5px 12px;cursor:pointer}
+  .toggle.on{color:var(--animal);border-color:var(--animal)}
+  .toggle:focus-visible{outline:2px solid var(--animal);outline-offset:2px}
+
+  /* ---------- the log (signature) ---------- */
+  .log{display:flex;flex-direction:column;gap:8px}
+  .row{
+    background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:12px 14px;font-family:'IBM Plex Mono',monospace;font-size:.8rem;
+    display:grid;grid-template-columns:auto 1fr;gap:4px 14px;cursor:pointer
+  }
+  .row.urgent{border-left:3px solid var(--urgent)}
+  .ts{color:var(--muted);font-size:.72rem;grid-column:1}
+  .cam{color:var(--text);font-weight:600;grid-column:1;text-transform:uppercase;font-size:.74rem}
+  .meta{grid-column:2;grid-row:1 / span 2;display:flex;flex-direction:column;gap:6px}
+  .chips{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .chip{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    padding:2px 9px;border-radius:999px;border:1px solid}
+  .chip.person{color:var(--person);border-color:var(--person)}
+  .chip.vehicle{color:var(--vehicle);border-color:var(--vehicle)}
+  .chip.animal{color:var(--animal);border-color:var(--animal)}
+  .chip.false_alarm,.chip.unclear,.chip.unknown{color:var(--noise);border-color:var(--noise)}
+  .pips{color:var(--muted);font-size:.7rem;letter-spacing:2px}
+  .pips .hot{color:var(--urgent)}
+  .sum{color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.86rem;line-height:1.4}
+  .sent{color:var(--muted);font-size:.68rem}
+  .snap{margin-top:8px;border-radius:8px;max-width:100%;border:1px solid var(--line);display:none}
+  .row.open .snap{display:block}
+
+  .empty{border:1px dashed var(--line);border-radius:var(--radius);
+    padding:34px 20px;text-align:center;color:var(--muted);
+    font-size:.85rem;line-height:1.6}
+  .empty code{font-family:'IBM Plex Mono',monospace;color:var(--text);font-size:.78rem}
+
+  footer{margin-top:22px;padding-top:12px;border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--muted);
+    display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<header>
+  <h1>THEDECK<span>·</span>AI</h1>
+  <div class="live" id="liveLabel">watching</div>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="controls">
+  <h2>Alert log</h2>
+  <button class="toggle on" id="noiseToggle">hiding false alarms</button>
+</div>
+
+<div class="log" id="log">
+  <div class="empty">
+    Connecting…
+  </div>
+</div>
+
+<footer>
+  <span>Tinamastes · Costa Rica</span>
+  <span id="lastSync"></span>
+</footer>
+
+<script>
+/* ============ CONFIG — fill these in ============ */
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR-ANON-KEY"; // anon key only — never the service key
+/* ================================================= */
+
+let hideNoise = true;
+let alerts = [];
+
+const $log = document.getElementById("log");
+const $stats = document.getElementById("stats");
+const $toggle = document.getElementById("noiseToggle");
+const $sync = document.getElementById("lastSync");
+
+$toggle.addEventListener("click", () => {
+  hideNoise = !hideNoise;
+  $toggle.classList.toggle("on", hideNoise);
+  $toggle.textContent = hideNoise ? "hiding false alarms" : "showing everything";
+  render();
+});
+
+async function fetchAlerts() {
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/deck_alerts?select=*&order=created_at.desc&limit=100`,
+      { headers: { apikey: SUPABASE_ANON_KEY, authorization: `Bearer ${SUPABASE_ANON_KEY}` } }
+    );
+    if (!res.ok) throw new Error(res.status);
+    alerts = await res.json();
+    $sync.textContent = "synced " + new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+    render();
+  } catch (e) {
+    $log.innerHTML = `<div class="empty">Couldn't reach Supabase.<br>
+      Check <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> at the top of index.html.</div>`;
+  }
+}
+
+function render() {
+  const shown = hideNoise
+    ? alerts.filter(a => a.category !== "false_alarm")
+    : alerts;
+
+  // stats for today
+  const today = new Date().toDateString();
+  const todays = alerts.filter(a => new Date(a.created_at).toDateString() === today);
+  const filtered = todays.filter(a => a.category === "false_alarm").length;
+  const sent = todays.filter(a => a.notified).length;
+  $stats.innerHTML = `
+    <div class="stat"><b>${todays.length}</b>events today</div>
+    <div class="stat"><b>${filtered}</b>false alarms filtered</div>
+    <div class="stat"><b>${sent}</b>sent to WhatsApp</div>`;
+
+  if (!shown.length) {
+    $log.innerHTML = `<div class="empty">All quiet on the deck. 🌴<br><br>
+      Alerts appear here the moment a camera emails the pipeline.<br>
+      Test it: send any email with a photo attached to your CloudMailin address.</div>`;
+    return;
+  }
+
+  $log.innerHTML = shown.map(a => {
+    const t = new Date(a.created_at);
+    const lvl = a.threat_level || 1;
+    const pips = Array.from({length:3}, (_,i) =>
+      `<span class="${i < lvl && lvl === 3 ? "hot" : ""}">${i < lvl ? "●" : "○"}</span>`).join("");
+    return `
+    <div class="row ${lvl === 3 ? "urgent" : ""}" data-id="${a.id}" role="button" tabindex="0"
+         aria-label="Alert from ${esc(a.camera)}">
+      <div class="ts">${t.toLocaleDateString([], {month:"short",day:"numeric"})} ${t.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</div>
+      <div class="cam">${esc(a.camera || "camera")}</div>
+      <div class="meta">
+        <div class="chips">
+          <span class="chip ${esc(a.category)}">${esc((a.category||"event").replace("_"," "))}</span>
+          <span class="pips">${pips}</span>
+          ${a.notified ? `<span class="sent">→ whatsapp</span>` : ""}
+        </div>
+        <div class="sum">${esc(a.summary || "")}</div>
+        ${a.snapshot_url ? `<img class="snap" loading="lazy" src="${esc(a.snapshot_url)}" alt="Snapshot from ${esc(a.camera)}">` : ""}
+      </div>
+    </div>`;
+  }).join("");
+
+  $log.querySelectorAll(".row").forEach(row => {
+    const open = () => row.classList.toggle("open");
+    row.addEventListener("click", open);
+    row.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  });
+}
+
+function esc(s){return String(s ?? "").replace(/[&<>"']/g, c =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+
+fetchAlerts();
+setInterval(fetchAlerts, 20000); // poll every 20s
+</script>
+</body>
+</html>
