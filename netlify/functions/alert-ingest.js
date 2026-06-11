@@ -15,6 +15,14 @@ const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-4-20250514";
 const MIN_THREAT = parseInt(process.env.MIN_THREAT_TO_NOTIFY || "2", 10);
 
 export default async (req) => {
+  // Debug: log which env vars are present (not values, just exists/length)
+  console.log("ENV CHECK:", {
+    ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY ? `set (${process.env.ANTHROPIC_API_KEY.length} chars, starts: ${process.env.ANTHROPIC_API_KEY.substring(0,8)})` : "MISSING",
+    SUPABASE_URL: process.env.SUPABASE_URL ? `set (${process.env.SUPABASE_URL.length} chars)` : "MISSING",
+    SUPABASE_SERVICE_KEY: process.env.SUPABASE_SERVICE_KEY ? `set (${process.env.SUPABASE_SERVICE_KEY.length} chars, starts: ${process.env.SUPABASE_SERVICE_KEY.substring(0,10)})` : "MISSING",
+    INGEST_SECRET: process.env.INGEST_SECRET ? `set` : "MISSING",
+  });
+
   if (req.method !== "POST") return new Response("POST only", { status: 405 });
 
   const url = new URL(req.url);
