@@ -126,6 +126,26 @@
 
   footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #8A8A78; }
 
+  /* ── RESULTS SHOWCASE ── */
+  .results-note { font-size: 12.5px; color: #8A8A78; margin: 30px 0 10px; }
+  .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+  .result-card { background: #FFFFFF; border-radius: 16px; padding: 22px; border-top: 4px solid; }
+  .result-card .result-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .result-card .result-seal {
+    width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center;
+    justify-content: center; font-family: 'Fraunces', serif; font-size: 12px; color: #FFFFFF;
+  }
+  .result-card .result-name { font-weight: 700; font-size: 14px; color: #1A2016; }
+  .result-card .result-role { font-size: 11px; color: #8A8A78; }
+  .result-card .week-goal {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; line-height: 1.5;
+    color: #232A20; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(35,42,32,0.08);
+  }
+  .result-card .result-item {
+    display: flex; justify-content: space-between; gap: 10px; font-size: 12.5px; padding: 7px 0; color: #4B5245;
+  }
+  .result-card .result-item span:last-child { color: #8A8A78; flex-shrink: 0; text-align: right; }
+
   /* ── PHOTOS — placed contextually within sections, not
      clustered together ── */
   .hero-collage {
@@ -192,6 +212,7 @@
       <div class="nav-row">
         <a href="#ring">The Ring</a>
         <a href="#team">The Team</a>
+        <a href="#results">Real Output</a>
         <a href="#principles">How We Build It</a>
       </div>
     </div>
@@ -389,6 +410,72 @@
           <div class="ann"><strong>Asks, doesn't assume</strong> A real clarifying question before jumping to advice.</div>
           <div class="ann"><strong>One concrete action</strong> Not a list of ten things — one real change for this week.</div>
           <div class="ann"><strong>Checks real data</strong> Follows up against your actual sleep sync, not a guess at whether it worked.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <div class="eyebrow">Real Output</div>
+      <h2>What each specialist actually hands you</h2>
+      <p style="margin-top:14px; color:#6B7268; max-width:600px;">Not a template with your name swapped in — a real, structured plan built from your actual answers and your actual data. Sample output below, shaped exactly like the real thing.</p>
+      <div class="results-note">Illustrative — one real person's week, not a universal example.</div>
+
+      <div class="results-grid">
+        <div class="result-card" style="border-top-color:#4F7A57;">
+          <div class="result-head">
+            <div class="result-seal" style="background:linear-gradient(145deg,#A9CDAE,#5F7F63);">DS</div>
+            <div><div class="result-name">Dr. Sage</div><div class="result-role">Weekly Report</div></div>
+          </div>
+          <div class="week-goal">"Real progress this week — your recovery trended up 12%, and you followed through on 4 of 5 sleep actions. Earlier bedtimes are already showing up in your resting-check numbers. Willow's plan is working."</div>
+          <div class="result-item"><span>Recovery trend</span><span>+12%</span></div>
+          <div class="result-item"><span>Sleep plan adherence</span><span>4 of 5</span></div>
+          <div class="result-item"><span>Referral flagged</span><span>None this week</span></div>
+        </div>
+
+        <div class="result-card" style="border-top-color:#5A6BC0;">
+          <div class="result-head">
+            <div class="result-seal" style="background:linear-gradient(145deg,#98A5DE,#4C5AA0);">W</div>
+            <div><div class="result-name">Willow</div><div class="result-role">Sleep Plan</div></div>
+          </div>
+          <div class="week-goal">"Bedtime consistency is the target this week — you've been drifting past midnight most nights, and that's the biggest lever we have."</div>
+          <div class="result-item"><span>Lights out</span><span>10:30pm, every night</span></div>
+          <div class="result-item"><span>Wind-down</span><span>No screens, 30 min before</span></div>
+          <div class="result-item"><span>Instead of scrolling</span><span>Tea or reading</span></div>
+        </div>
+
+        <div class="result-card" style="border-top-color:#9662B0;">
+          <div class="result-head">
+            <div class="result-seal" style="background:linear-gradient(145deg,#CBA8D6,#7A5589);">L</div>
+            <div><div class="result-name">Lotus</div><div class="result-role">Mindfulness Plan</div></div>
+          </div>
+          <div class="week-goal">"Stress has been building around work deadlines — let's build in real recovery points, not just save it for the end of the day."</div>
+          <div class="result-item"><span>Monday</span><span>Box breathing, before your first meeting</span></div>
+          <div class="result-item"><span>Wednesday</span><span>10-min walk, no phone</span></div>
+          <div class="result-item"><span>Friday</span><span>Body scan before bed</span></div>
+        </div>
+
+        <div class="result-card" style="border-top-color:#B85A32;">
+          <div class="result-head">
+            <div class="result-seal" style="background:linear-gradient(145deg,#E6A183,#A85936);">H</div>
+            <div><div class="result-name">Hawthorn</div><div class="result-role">Weekly Regimen</div></div>
+          </div>
+          <div class="week-goal">"Your resting checks are strong and you hit 4 of 5 sessions last week — real progression this week, not a repeat."</div>
+          <div class="result-item"><span>Day 1</span><span>Bench press 4×6, squats 3×12</span></div>
+          <div class="result-item"><span>Day 2</span><span>Rows 4×10, lunges 3×10/leg</span></div>
+          <div class="result-item"><span>Trajectory</span><span>Ahead of pace</span></div>
+        </div>
+
+        <div class="result-card" style="border-top-color:#5E8F35;">
+          <div class="result-head">
+            <div class="result-seal" style="background:linear-gradient(145deg,#B6D68A,#6B8F45);">B</div>
+            <div><div class="result-name">Basil</div><div class="result-role">Meal Plan</div></div>
+          </div>
+          <div class="week-goal">"Protein at breakfast is the one change that'll move the needle most this week, based on how your mornings have been going."</div>
+          <div class="result-item"><span>Mon breakfast</span><span>Greek yogurt, berries, walnuts</span></div>
+          <div class="result-item"><span>Tue dinner</span><span>Sheet-pan lemon chicken</span></div>
+          <div class="result-item"><span>Coordinated with</span><span>Hawthorn's regimen</span></div>
         </div>
       </div>
     </div>
