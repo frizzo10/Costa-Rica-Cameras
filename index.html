@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>myDrSage — A ring, a team, and a way of building it</title>
+<meta name="theme-color" content="#0D130F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0D130F; color: #F3EFE6; line-height: 1.6;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 90px 0; border-bottom: 1px solid rgba(243,239,230,0.08); }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; }
+  .eyebrow {
+    font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #C9A75C; margin-bottom: 14px;
+  }
+  .voice { font-family: 'Fraunces', serif; font-style: italic; color: #D6D8D2; }
+  a { color: inherit; }
+
+  /* ── HERO ── */
+  #hero { padding: 130px 0 100px; text-align: center; border-bottom: 1px solid rgba(243,239,230,0.08); }
+  #hero h1 { font-size: 44px; line-height: 1.15; margin-bottom: 20px; }
+  #hero .sub {
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 19px; color: #D6D8D2;
+    max-width: 560px; margin: 0 auto 36px;
+  }
+  .nav-row { display: flex; justify-content: center; gap: 28px; margin-top: 44px; flex-wrap: wrap; }
+  .nav-row a {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: #8C9689; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 4px;
+  }
+  .nav-row a:hover { color: #F3EFE6; border-bottom-color: #C9A75C; }
+
+  /* ── RING ── */
+  .ring-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 36px; }
+  .ring-card {
+    background: #161D18; border: 1px solid rgba(243,239,230,0.1); border-radius: 16px; padding: 22px;
+  }
+  .ring-card.coming { border-style: dashed; border-color: rgba(201,167,92,0.35); }
+  .ring-card .metric-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+  .ring-card .metric-status { font-size: 12px; color: #9FC96B; margin-bottom: 10px; }
+  .ring-card.coming .metric-status { color: #C9A75C; }
+  .ring-card p { font-size: 13.5px; color: #8C9689; }
+
+  /* ── TEAM ── */
+  .team-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
+  .member-card {
+    display: flex; gap: 18px; background: #161D18; border: 1px solid rgba(243,239,230,0.08);
+    border-radius: 16px; padding: 22px;
+  }
+  .seal {
+    width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0; position: relative;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 20px; color: #F3EFE6;
+  }
+  .seal::after {
+    content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px solid rgba(201,167,92,0.4);
+  }
+  .member-card h3 { font-size: 17px; margin-bottom: 2px; }
+  .member-role { font-size: 12px; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .member-card .voice { font-size: 14.5px; line-height: 1.55; }
+
+  /* ── PRINCIPLES ── */
+  .principle {
+    display: flex; gap: 18px; padding: 24px 0; border-top: 1px solid rgba(243,239,230,0.08);
+  }
+  .principle:first-of-type { border-top: none; padding-top: 0; }
+  .principle .num {
+    font-family: 'Fraunces', serif; font-size: 22px; color: #C9A75C; flex-shrink: 0; width: 36px;
+  }
+  .principle h3 { font-size: 16.5px; margin-bottom: 6px; }
+  .principle p { font-size: 14px; color: #8C9689; line-height: 1.6; }
+
+  footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #6B756E; }
+</style>
+</head>
+<body>
+
+  <section id="hero">
+    <div class="wrap">
+      <div class="eyebrow">myDrSage</div>
+      <h1>A ring on your finger.<br>A team behind it.</h1>
+      <div class="sub">"Between a health coach and your doctor" was the old pitch. The real one: a ring that actually measures things, and a team of specialists who never pretend to know more than the data says.</div>
+      <div class="nav-row">
+        <a href="#ring">The Ring</a>
+        <a href="#team">The Team</a>
+        <a href="#principles">How We Build It</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="ring">
+    <div class="wrap">
+      <div class="eyebrow">The Ring</div>
+      <h2>What it actually measures</h2>
+      <p class="voice" style="margin-top:14px; max-width:560px;">"No sensor, no claim. If the ring can't measure it yet, we say so — out loud, in the product, not in fine print."</p>
+      <div class="ring-grid">
+        <div class="ring-card">
+          <div class="metric-name">Steps &amp; Activity</div>
+          <div class="metric-status">Live today</div>
+          <p>Real daily step totals, synced automatically. Your Hawthorn goal target is calculated from your own rolling average — never a generic 10,000.</p>
+        </div>
+        <div class="ring-card">
+          <div class="metric-name">Heart Rate &amp; SpO2</div>
+          <div class="metric-status">Live today</div>
+          <p>Continuous resting-rate and blood oxygen readings, feeding real recovery and readiness signals across the whole team.</p>
+        </div>
+        <div class="ring-card">
+          <div class="metric-name">Sleep</div>
+          <div class="metric-status">Live today</div>
+          <p>Real sleep stages and duration, synced each morning — the weakest link of any ring at this price, and we don't oversell it.</p>
+        </div>
+        <div class="ring-card coming">
+          <div class="metric-name">Temperature</div>
+          <div class="metric-status">Hardware in hand, not wired up yet</div>
+          <p>The R09 has a real sensor. Its Bluetooth protocol hasn't been reverse-engineered for this app yet. The dashboard says exactly that today — no fake reading in the meantime.</p>
+        </div>
+        <div class="ring-card coming">
+          <div class="metric-name">Cycling &amp; Swimming</div>
+          <div class="metric-status">Hardware-capable, not scoped</div>
+          <p>The ring supports sport modes in its own app. Getting that data into ours is separate reverse-engineering work nobody's started.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="eyebrow">Your Team</div>
+      <h2>Five specialists, one coordinator</h2>
+      <p style="margin-top:14px; color:#8C9689; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
+      <div class="team-grid">
+        <div class="member-card">
+          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #8FB5962e, #0D130F 72%); border:1.5px solid #8FB59655;">DS</div>
+          <div>
+            <h3>Dr. Sage</h3>
+            <div class="member-role" style="color:#8FB596;">Holistic Wellness Doctor — coordinator</div>
+            <div class="voice">"I bring together everything the team learns about you into one clear picture — and I'm the one who'll flag anything worth a real doctor's attention."</div>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #7E8FD12e, #0D130F 72%); border:1.5px solid #7E8FD155;">W</div>
+          <div>
+            <h3>Willow</h3>
+            <div class="member-role" style="color:#7E8FD1;">Sleep Coach</div>
+            <div class="voice">"I look after your sleep. Most people don't realize how much a bad night explains the day after."</div>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #B98FC92e, #0D130F 72%); border:1.5px solid #B98FC955;">L</div>
+          <div>
+            <h3>Lotus</h3>
+            <div class="member-role" style="color:#B98FC9;">Mindfulness Coach</div>
+            <div class="voice">"I help you notice stress before it piles up — a few minutes a day is usually enough."</div>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #D9835C2e, #0D130F 72%); border:1.5px solid #D9835C55;">H</div>
+          <div>
+            <h3>Hawthorn</h3>
+            <div class="member-role" style="color:#D9835C;">Exercise Coach</div>
+            <div class="voice">"Not about punishing workouts, just moving in a way that actually fits your life."</div>
+          </div>
+        </div>
+        <div class="member-card">
+          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #9FC96B2e, #0D130F 72%); border:1.5px solid #9FC96B55;">B</div>
+          <div>
+            <h3>Basil</h3>
+            <div class="member-role" style="color:#9FC96B;">Nutrition Coach</div>
+            <div class="voice">"I'm not here to police what you eat, just to help you see the patterns."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="principles">
+    <div class="wrap">
+      <div class="eyebrow">How We Build It</div>
+      <h2>The rules that don't change, no matter what feature we're on</h2>
+      <p style="margin-top:14px; color:#8C9689; max-width:600px;">Not a mission statement. These are the actual constraints that have shaped every real decision in this app so far — meant to keep shaping the next one too.</p>
+
+      <div style="margin-top:44px;">
+        <div class="principle">
+          <div class="num">01</div>
+          <div><h3>Real data, or an honest gap — never a third option</h3>
+          <p>No invented baseline, no fabricated completion, no guessed number dressed up as a measurement. If the ring hasn't measured it, or the person hasn't said it, the product says so out loud instead of filling the space with something plausible-looking.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">02</div>
+          <div><h3>Coaching, not medicine</h3>
+          <p>Every specialist is a coach, not a clinician. None of them diagnose. Dr. Sage's whole job is knowing when something's worth a real doctor's attention and saying so plainly — never pretending the team is a substitute for one.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">03</div>
+          <div><h3>Difficulty scales to the real person</h3>
+          <p>A stated beginner never gets an athlete's plan with an easier-sounding label slapped on it. Regimens, mindfulness plans, and meal plans all adapt to real readiness data and real week-to-week completion — harder when it's earned, easier when the data says to ease off.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">04</div>
+          <div><h3>Commitment is the person's own words</h3>
+          <p>Goals, weekly promises, and plan check-ins get reflected back in what the person actually said — voice or typed, saved verbatim — and confirmed by them before anything counts as decided. Nothing about someone's stated goal changes silently, even when the data suggests it should.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">05</div>
+          <div><h3>A safety net that doesn't depend on the model's mood</h3>
+          <p>Every real conversation surface runs a deterministic crisis-language check independent of whatever the AI itself would say — same real resources, every time, regardless of how the model is behaving that day.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">06</div>
+          <div><h3>Every plan points at one real goal</h3>
+          <p>Four specialists, four domains — but the goal a person actually stated is what every one of their plans has to serve. Not generic domain advice five different ways.</p></div>
+        </div>
+        <div class="principle">
+          <div class="num">07</div>
+          <div><h3>Say what's not built yet, in the product itself</h3>
+          <p>Missing features don't get hidden or faked — they show up as honest, specific, in-product statements about what's real, what's hardware-capable-but-unwired, and what hasn't been started. The gap between "the ring can do this" and "the app reads it" gets named, not papered over.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">myDrSage — built one honest constraint at a time.</div>
+  </footer>
+
+</body>
+</html>
