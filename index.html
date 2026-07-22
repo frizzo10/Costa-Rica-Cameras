@@ -288,7 +288,7 @@
       </div>
       <p style="margin-top:14px; color:#6B7268; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
       <div class="team-grid">
-        <div class="member-card" data-member="dr-sage">
+        <div class="member-card" data-member="dr-sage" data-voicekey="drSage">
           <div class="seal" style="background:linear-gradient(145deg,#A9CDAE,#5F7F63);">DS</div>
           <div class="member-main">
             <h3>Dr. Sage</h3>
@@ -299,7 +299,7 @@
           </div>
           <div class="expand-icon">+</div>
         </div>
-        <div class="member-card" data-member="willow">
+        <div class="member-card" data-member="willow" data-voicekey="sleep">
           <div class="seal" style="background:linear-gradient(145deg,#98A5DE,#4C5AA0);">W</div>
           <div class="member-main">
             <h3>Willow</h3>
@@ -310,7 +310,7 @@
           </div>
           <div class="expand-icon">+</div>
         </div>
-        <div class="member-card" data-member="lotus">
+        <div class="member-card" data-member="lotus" data-voicekey="stress">
           <div class="seal" style="background:linear-gradient(145deg,#CBA8D6,#7A5589);">L</div>
           <div class="member-main">
             <h3>Lotus</h3>
@@ -321,7 +321,7 @@
           </div>
           <div class="expand-icon">+</div>
         </div>
-        <div class="member-card" data-member="hawthorn">
+        <div class="member-card" data-member="hawthorn" data-voicekey="activity">
           <div class="seal" style="background:linear-gradient(145deg,#E6A183,#A85936);">H</div>
           <div class="member-main">
             <h3>Hawthorn</h3>
@@ -332,7 +332,7 @@
           </div>
           <div class="expand-icon">+</div>
         </div>
-        <div class="member-card" data-member="basil">
+        <div class="member-card" data-member="basil" data-voicekey="nutrition">
           <div class="seal" style="background:linear-gradient(145deg,#B6D68A,#6B8F45);">B</div>
           <div class="member-main">
             <h3>Basil</h3>
@@ -430,23 +430,45 @@
     });
   });
 
-  // Real browser text-to-speech, not the app's own Azure voices —
-  // those are server-side and this is a static page. Still a real,
-  // working spoken intro, just the browser's own voice instead of
-  // Jenny/Aria/etc.
+  // Real Azure voices \u2014 the exact same TTS endpoint the app
+  // itself uses (drsage.netlify.app/.netlify/functions/tts),
+  // called cross-origin from this marketing site. Same voiceKey
+  // mapping as the real VOICE_MAP in tts.js: Dr. Sage=Davis,
+  // Willow=Jenny, Lotus=Sara, Hawthorn=Guy, Basil=Aria.
+  const TTS_ENDPOINT = 'https://drsage.netlify.app/.netlify/functions/tts';
+  let currentAudio = null;
+
   document.querySelectorAll('.hear-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
+    btn.addEventListener('click', async function(e) {
       e.stopPropagation(); // don't also toggle the card open/closed
-      if (!('speechSynthesis' in window)) {
-        btn.textContent = 'Speech not supported in this browser';
+      const card = btn.closest('.member-card');
+      const voiceKey = card.dataset.voicekey;
+      const text = card.querySelector('.intro-line').textContent.replace(/^"|"$/g, '');
+
+      if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+      const original = btn.textContent;
+      btn.textContent = 'Loading real voice\u2026';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(TTS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text, voiceKey }),
+        });
+        if (!res.ok) throw new Error('TTS request failed');
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        currentAudio = new Audio(url);
+        currentAudio.addEventListener('ended', () => URL.revokeObjectURL(url));
+        await currentAudio.play();
+      } catch (err) {
+        btn.textContent = 'Couldn\u2019t load the voice \u2014 try again';
+        setTimeout(() => { btn.textContent = original; btn.disabled = false; }, 2500);
         return;
       }
-      const card = btn.closest('.member-card');
-      const text = card.querySelector('.intro-line').textContent.replace(/^"|"$/g, '');
-      window.speechSynthesis.cancel(); // stop anything already playing
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.rate = 0.95;
-      window.speechSynthesis.speak(utter);
+      btn.textContent = original;
+      btn.disabled = false;
     });
   });
 </script>
