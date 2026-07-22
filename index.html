@@ -99,6 +99,17 @@
 
   footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #8A8A78; }
 
+  /* ── LIFESTYLE GALLERY ── */
+  .lifestyle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 36px; }
+  .lifestyle-card { border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 4/5; background: #EFEADC; }
+  .lifestyle-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .lifestyle-caption {
+    position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 14px 12px;
+    background: linear-gradient(to top, rgba(26,32,22,0.75), transparent);
+    color: #FFFFFF; font-size: 13px; font-weight: 700;
+  }
+  .lifestyle-caption span { display: block; font-weight: 400; font-size: 11px; opacity: 0.85; margin-top: 2px; }
+
   /* ── CONVERSATION MOCK ── */
   .chat-mock {
     background: #FFFFFF; border: 1px solid rgba(35,42,32,0.08); border-radius: 20px;
@@ -214,6 +225,25 @@
           <div class="metric-status">Built in</div>
           <p>Multiple sport modes beyond everyday steps — walking, running, cycling, swimming — with real water resistance built into the ring itself.</p>
           <div class="metric-detail">Built for more than daily steps — real sport-mode sessions for a ride or a swim, with genuine water resistance so the ring stays on through the pool or open water, not just the shower.</div>
+        </div>
+      </div>
+
+      <div class="lifestyle-grid">
+        <div class="lifestyle-card">
+          <img src="https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Peaceful sleep, tracked by the ring" loading="lazy">
+          <div class="lifestyle-caption">Sleep<span>Willow's domain</span></div>
+        </div>
+        <div class="lifestyle-card">
+          <img src="https://images.pexels.com/photos/3989314/pexels-photo-3989314.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A morning run, tracked by the ring" loading="lazy">
+          <div class="lifestyle-caption">Movement<span>Hawthorn's domain</span></div>
+        </div>
+        <div class="lifestyle-card">
+          <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A quiet moment of mindfulness" loading="lazy">
+          <div class="lifestyle-caption">Stillness<span>Lotus's domain</span></div>
+        </div>
+        <div class="lifestyle-card">
+          <img src="https://images.pexels.com/photos/4519057/pexels-photo-4519057.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A real, fresh meal" loading="lazy">
+          <div class="lifestyle-caption">Nutrition<span>Basil's domain</span></div>
         </div>
       </div>
     </div>
