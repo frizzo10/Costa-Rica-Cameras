@@ -99,11 +99,12 @@
 
   footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #8A8A78; }
 
-  /* ── EDITORIAL PHOTOS — one per section, woven into the content,
-     not clustered together in a gallery block ── */
-  .editorial-photo { border-radius: 18px; overflow: hidden; margin: 40px 0; }
-  .editorial-photo img { width: 100%; display: block; max-height: 380px; object-fit: cover; }
-  .editorial-photo .cap { padding: 12px 2px 0; font-size: 12px; color: #8A8A78; }
+  /* ── PHOTOS — placed contextually within sections, not
+     clustered together ── */
+  .hero-photo {
+    max-width: 420px; margin: 36px auto; border-radius: 20px; overflow: hidden;
+  }
+  .hero-photo img { width: 100%; display: block; }
   .photo-float {
     float: right; width: 240px; border-radius: 16px; overflow: hidden; margin: 6px 0 20px 24px;
   }
@@ -138,6 +139,9 @@
     <div class="wrap">
       <div class="eyebrow">myDrSage</div>
       <h1>A ring on your finger.<br>A team behind it.</h1>
+      <div class="hero-photo">
+        <img src="https://images.pexels.com/photos/35147278/pexels-photo-35147278.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="The ring, tracking real data" loading="lazy">
+      </div>
       <div class="sub">"Between a health coach and your doctor" was the old pitch. The real one: a ring that actually measures things, and a team of specialists who never pretend to know more than the data says.</div>
       <div class="nav-row">
         <a href="#ring">The Ring</a>
@@ -146,12 +150,6 @@
       </div>
     </div>
   </section>
-
-  <div class="wrap">
-    <div class="editorial-photo">
-      <img src="https://images.pexels.com/photos/3989314/pexels-photo-3989314.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Morning movement, tracked by the ring" loading="lazy">
-    </div>
-  </div>
 
   <section id="ring">
     <div class="wrap">
