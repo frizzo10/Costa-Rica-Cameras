@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>myDrSage — A ring, a team, and a way of building it</title>
-<meta name="theme-color" content="#0D130F">
+<meta name="theme-color" content="#F8F4EA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -12,73 +12,84 @@
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #0D130F; color: #F3EFE6; line-height: 1.6;
+    background: #F8F4EA; color: #232A20; line-height: 1.6;
   }
   .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
-  section { padding: 90px 0; border-bottom: 1px solid rgba(243,239,230,0.08); }
+  section { padding: 90px 0; border-bottom: 1px solid rgba(35,42,32,0.1); }
   h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 500; }
   .eyebrow {
     font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-    color: #C9A75C; margin-bottom: 14px;
+    color: #96702E; margin-bottom: 14px;
   }
-  .voice { font-family: 'Fraunces', serif; font-style: italic; color: #D6D8D2; }
+  .voice { font-family: 'Fraunces', serif; font-style: italic; color: #4B5245; }
   a { color: inherit; }
 
   /* ── HERO ── */
-  #hero { padding: 130px 0 100px; text-align: center; border-bottom: 1px solid rgba(243,239,230,0.08); }
-  #hero h1 { font-size: 44px; line-height: 1.15; margin-bottom: 20px; }
+  #hero { padding: 130px 0 100px; text-align: center; border-bottom: 1px solid rgba(35,42,32,0.1); }
+  #hero h1 { font-size: 44px; line-height: 1.15; margin-bottom: 20px; color: #1A2016; }
   #hero .sub {
-    font-family: 'Fraunces', serif; font-style: italic; font-size: 19px; color: #D6D8D2;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 19px; color: #4B5245;
     max-width: 560px; margin: 0 auto 36px;
   }
   .nav-row { display: flex; justify-content: center; gap: 28px; margin-top: 44px; flex-wrap: wrap; }
   .nav-row a {
     font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    color: #8C9689; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 4px;
+    color: #6B7268; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 4px;
   }
-  .nav-row a:hover { color: #F3EFE6; border-bottom-color: #C9A75C; }
+  .nav-row a:hover { color: #232A20; border-bottom-color: #C9A75C; }
+
+  /* ── CHARTS (illustrative sample data — real charts, real shapes,
+     just not tied to any one person on a public showcase page) ── */
+  .charts-note { font-size: 12.5px; color: #8A8A78; margin: 30px 0 6px; }
+  .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-bottom: 40px; }
+  .chart-card { background: #FFFFFF; border: 1px solid rgba(35,42,32,0.08); border-radius: 16px; padding: 20px; }
+  .chart-card .chart-title { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .chart-card .chart-sub { font-size: 12px; color: #8A8A78; margin-bottom: 14px; }
+  .chart-card svg { width: 100%; height: 110px; display: block; }
+  .legend-row { display: flex; gap: 14px; font-size: 10.5px; color: #8A8A78; margin-top: 10px; }
+  .legend-row span::before { content: ''; display: inline-block; width: 10px; height: 2px; margin-right: 5px; vertical-align: middle; }
 
   /* ── RING ── */
   .ring-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 36px; }
   .ring-card {
-    background: #161D18; border: 1px solid rgba(243,239,230,0.1); border-radius: 16px; padding: 22px;
+    background: #FFFFFF; border: 1px solid rgba(35,42,32,0.08); border-radius: 16px; padding: 22px;
   }
-  .ring-card.coming { border-style: dashed; border-color: rgba(201,167,92,0.35); }
-  .ring-card .metric-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
-  .ring-card .metric-status { font-size: 12px; color: #9FC96B; margin-bottom: 10px; }
-  .ring-card.coming .metric-status { color: #C9A75C; }
-  .ring-card p { font-size: 13.5px; color: #8C9689; }
+  .ring-card.coming { border-style: dashed; border-color: rgba(150,112,46,0.4); background: #FBF7EE; }
+  .ring-card .metric-name { font-weight: 700; font-size: 15px; margin-bottom: 6px; color: #1A2016; }
+  .ring-card .metric-status { font-size: 12px; color: #5E8F35; margin-bottom: 10px; font-weight: 600; }
+  .ring-card.coming .metric-status { color: #96702E; }
+  .ring-card p { font-size: 13.5px; color: #6B7268; }
 
   /* ── TEAM ── */
   .team-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
   .member-card {
-    display: flex; gap: 18px; background: #161D18; border: 1px solid rgba(243,239,230,0.08);
+    display: flex; gap: 18px; background: #FFFFFF; border: 1px solid rgba(35,42,32,0.08);
     border-radius: 16px; padding: 22px;
   }
   .seal {
     width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0; position: relative;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif; font-size: 20px; color: #F3EFE6;
+    font-family: 'Fraunces', serif; font-size: 20px; color: #FFFFFF;
   }
   .seal::after {
-    content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px solid rgba(201,167,92,0.4);
+    content: ''; position: absolute; inset: 3px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.5);
   }
-  .member-card h3 { font-size: 17px; margin-bottom: 2px; }
+  .member-card h3 { font-size: 17px; margin-bottom: 2px; color: #1A2016; }
   .member-role { font-size: 12px; margin-bottom: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
   .member-card .voice { font-size: 14.5px; line-height: 1.55; }
 
   /* ── PRINCIPLES ── */
   .principle {
-    display: flex; gap: 18px; padding: 24px 0; border-top: 1px solid rgba(243,239,230,0.08);
+    display: flex; gap: 18px; padding: 24px 0; border-top: 1px solid rgba(35,42,32,0.08);
   }
   .principle:first-of-type { border-top: none; padding-top: 0; }
   .principle .num {
-    font-family: 'Fraunces', serif; font-size: 22px; color: #C9A75C; flex-shrink: 0; width: 36px;
+    font-family: 'Fraunces', serif; font-size: 22px; color: #96702E; flex-shrink: 0; width: 36px;
   }
-  .principle h3 { font-size: 16.5px; margin-bottom: 6px; }
-  .principle p { font-size: 14px; color: #8C9689; line-height: 1.6; }
+  .principle h3 { font-size: 16.5px; margin-bottom: 6px; color: #1A2016; }
+  .principle p { font-size: 14px; color: #6B7268; line-height: 1.6; }
 
-  footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #6B756E; }
+  footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #8A8A78; }
 </style>
 </head>
 <body>
@@ -101,6 +112,50 @@
       <div class="eyebrow">The Ring</div>
       <h2>What it actually measures</h2>
       <p class="voice" style="margin-top:14px; max-width:560px;">"No sensor, no claim. If the ring can't measure it yet, we say so — out loud, in the product, not in fine print."</p>
+
+      <div class="charts-note">Sample data below, shaped like real logged output — not any one person's actual numbers.</div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-title" style="color:#5E8F35;">Steps</div>
+          <div class="chart-sub">Last 7 real logged days</div>
+          <svg viewBox="0 0 260 110">
+            <rect x="8" y="55" width="24" height="45" rx="3" fill="#5E8F35" opacity="0.35"/>
+            <rect x="42" y="40" width="24" height="60" rx="3" fill="#5E8F35" opacity="0.45"/>
+            <rect x="76" y="62" width="24" height="38" rx="3" fill="#5E8F35" opacity="0.35"/>
+            <rect x="110" y="30" width="24" height="70" rx="3" fill="#5E8F35" opacity="0.55"/>
+            <rect x="144" y="20" width="24" height="80" rx="3" fill="#5E8F35" opacity="0.65"/>
+            <rect x="178" y="35" width="24" height="65" rx="3" fill="#5E8F35" opacity="0.5"/>
+            <rect x="212" y="12" width="24" height="88" rx="3" fill="#5E8F35" opacity="0.8"/>
+          </svg>
+          <div class="legend-row"><span style="--c:#5E8F35;">Real ring-synced totals, personalized target — never a fixed 10,000</span></div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title" style="color:#4F7A57;">Recovery trend</div>
+          <div class="chart-sub">Resting-check vs. baseline</div>
+          <svg viewBox="0 0 260 110">
+            <polyline points="8,72 46,64 84,70 122,50 160,44 198,30 236,24" fill="none" stroke="#4F7A57" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8" cy="72" r="3" fill="#4F7A57"/><circle cx="46" cy="64" r="3" fill="#4F7A57"/>
+            <circle cx="84" cy="70" r="3" fill="#4F7A57"/><circle cx="122" cy="50" r="3" fill="#4F7A57"/>
+            <circle cx="160" cy="44" r="3" fill="#4F7A57"/><circle cx="198" cy="30" r="3" fill="#4F7A57"/>
+            <circle cx="236" cy="24" r="3" fill="#4F7A57"/>
+          </svg>
+          <div class="legend-row"><span style="--c:#4F7A57;">Real HRV + sleep signal, feeding real regimen intensity</span></div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title" style="color:#B85A32;">Trajectory</div>
+          <div class="chart-sub">Real progress vs. target pace</div>
+          <svg viewBox="0 0 260 110">
+            <line x1="8" y1="92" x2="236" y2="18" stroke="#8A8A78" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <polyline points="8,92 52,80 96,70 140,58" fill="none" stroke="#B85A32" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="8" cy="92" r="3" fill="#B85A32"/><circle cx="52" cy="80" r="3" fill="#B85A32"/>
+            <circle cx="96" cy="70" r="3" fill="#B85A32"/><circle cx="140" cy="58" r="3" fill="#B85A32"/>
+          </svg>
+          <div class="legend-row"><span style="--c:#B85A32;">Solid: real logged progress. Dashed: pace math, never a promise.</span></div>
+        </div>
+      </div>
+
       <div class="ring-grid">
         <div class="ring-card">
           <div class="metric-name">Steps &amp; Activity</div>
@@ -135,45 +190,45 @@
     <div class="wrap">
       <div class="eyebrow">Your Team</div>
       <h2>Five specialists, one coordinator</h2>
-      <p style="margin-top:14px; color:#8C9689; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
+      <p style="margin-top:14px; color:#6B7268; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
       <div class="team-grid">
         <div class="member-card">
-          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #8FB5962e, #0D130F 72%); border:1.5px solid #8FB59655;">DS</div>
+          <div class="seal" style="background:linear-gradient(145deg,#A9CDAE,#5F7F63);">DS</div>
           <div>
             <h3>Dr. Sage</h3>
-            <div class="member-role" style="color:#8FB596;">Holistic Wellness Doctor — coordinator</div>
+            <div class="member-role" style="color:#4F7A57;">Holistic Wellness Doctor — coordinator</div>
             <div class="voice">"I bring together everything the team learns about you into one clear picture — and I'm the one who'll flag anything worth a real doctor's attention."</div>
           </div>
         </div>
         <div class="member-card">
-          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #7E8FD12e, #0D130F 72%); border:1.5px solid #7E8FD155;">W</div>
+          <div class="seal" style="background:linear-gradient(145deg,#98A5DE,#4C5AA0);">W</div>
           <div>
             <h3>Willow</h3>
-            <div class="member-role" style="color:#7E8FD1;">Sleep Coach</div>
+            <div class="member-role" style="color:#5A6BC0;">Sleep Coach</div>
             <div class="voice">"I look after your sleep. Most people don't realize how much a bad night explains the day after."</div>
           </div>
         </div>
         <div class="member-card">
-          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #B98FC92e, #0D130F 72%); border:1.5px solid #B98FC955;">L</div>
+          <div class="seal" style="background:linear-gradient(145deg,#CBA8D6,#7A5589);">L</div>
           <div>
             <h3>Lotus</h3>
-            <div class="member-role" style="color:#B98FC9;">Mindfulness Coach</div>
+            <div class="member-role" style="color:#9662B0;">Mindfulness Coach</div>
             <div class="voice">"I help you notice stress before it piles up — a few minutes a day is usually enough."</div>
           </div>
         </div>
         <div class="member-card">
-          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #D9835C2e, #0D130F 72%); border:1.5px solid #D9835C55;">H</div>
+          <div class="seal" style="background:linear-gradient(145deg,#E6A183,#A85936);">H</div>
           <div>
             <h3>Hawthorn</h3>
-            <div class="member-role" style="color:#D9835C;">Exercise Coach</div>
+            <div class="member-role" style="color:#B85A32;">Exercise Coach</div>
             <div class="voice">"Not about punishing workouts, just moving in a way that actually fits your life."</div>
           </div>
         </div>
         <div class="member-card">
-          <div class="seal" style="background:radial-gradient(circle at 32% 28%, #9FC96B2e, #0D130F 72%); border:1.5px solid #9FC96B55;">B</div>
+          <div class="seal" style="background:linear-gradient(145deg,#B6D68A,#6B8F45);">B</div>
           <div>
             <h3>Basil</h3>
-            <div class="member-role" style="color:#9FC96B;">Nutrition Coach</div>
+            <div class="member-role" style="color:#5E8F35;">Nutrition Coach</div>
             <div class="voice">"I'm not here to police what you eat, just to help you see the patterns."</div>
           </div>
         </div>
@@ -185,7 +240,7 @@
     <div class="wrap">
       <div class="eyebrow">How We Build It</div>
       <h2>The rules that don't change, no matter what feature we're on</h2>
-      <p style="margin-top:14px; color:#8C9689; max-width:600px;">Not a mission statement. These are the actual constraints that have shaped every real decision in this app so far — meant to keep shaping the next one too.</p>
+      <p style="margin-top:14px; color:#6B7268; max-width:600px;">Not a mission statement. These are the actual constraints that have shaped every real decision in this app so far — meant to keep shaping the next one too.</p>
 
       <div style="margin-top:44px;">
         <div class="principle">
