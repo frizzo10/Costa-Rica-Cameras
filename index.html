@@ -24,6 +24,14 @@
   .logo-mark { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 22px; }
   .logo-mark svg { width: 34px; height: 34px; }
   .logo-mark span { font-family: 'Fraunces', serif; font-style: italic; font-size: 19px; color: #1A2016; }
+  .diff-callout {
+    background: #1A2016; color: #F3EFE6; border-radius: 20px; padding: 32px 34px; margin: 26px 0 30px;
+  }
+  .diff-callout .diff-label {
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #C9A75C; margin-bottom: 14px;
+  }
+  .diff-callout p { font-family: 'Fraunces', serif; font-size: 19px; line-height: 1.5; color: #F3EFE6; max-width: 640px; }
   .voice { font-family: 'Fraunces', serif; font-style: italic; color: #4B5245; }
   a { color: inherit; }
 
@@ -193,7 +201,10 @@
     <div class="wrap">
       <div class="eyebrow">The Ring</div>
       <h2>What it actually measures</h2>
-      <p style="margin-top:14px; color:#4B5245; max-width:600px; font-size:15px;">Every real number the ring reads becomes an input, not just a data point — the actual value we use to build a goal that's genuinely achievable for you, not a generic target. And once that goal is set, the whole team works toward it every day, not just at the start.</p>
+      <div class="diff-callout">
+        <div class="diff-label">Our True Differentiator</div>
+        <p>Every real number the ring reads becomes an input, not just a data point — the actual value we use to build a goal that's genuinely achievable for you, not a generic target. And once that goal is set, the whole team works toward it every day, not just at the start.</p>
+      </div>
       <p class="voice" style="margin-top:14px; max-width:560px;">"No sensor, no claim. If the ring can't measure it yet, we say so — out loud, in the product, not in fine print."</p>
 
       <div class="charts-note">Sample data below, shaped like real logged output — not any one person's actual numbers.</div>
