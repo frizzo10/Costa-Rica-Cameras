@@ -99,16 +99,17 @@
 
   footer { padding: 60px 0; text-align: center; font-size: 12.5px; color: #8A8A78; }
 
-  /* ── LIFESTYLE GALLERY ── */
-  .lifestyle-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 36px; }
-  .lifestyle-card { border-radius: 16px; overflow: hidden; position: relative; aspect-ratio: 4/5; background: #EFEADC; }
-  .lifestyle-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .lifestyle-caption {
-    position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 14px 12px;
-    background: linear-gradient(to top, rgba(26,32,22,0.75), transparent);
-    color: #FFFFFF; font-size: 13px; font-weight: 700;
+  /* ── EDITORIAL PHOTOS — one per section, woven into the content,
+     not clustered together in a gallery block ── */
+  .editorial-photo { border-radius: 18px; overflow: hidden; margin: 40px 0; }
+  .editorial-photo img { width: 100%; display: block; max-height: 380px; object-fit: cover; }
+  .editorial-photo .cap { padding: 12px 2px 0; font-size: 12px; color: #8A8A78; }
+  .photo-float {
+    float: right; width: 240px; border-radius: 16px; overflow: hidden; margin: 6px 0 20px 24px;
   }
-  .lifestyle-caption span { display: block; font-weight: 400; font-size: 11px; opacity: 0.85; margin-top: 2px; }
+  .photo-float img { width: 100%; display: block; }
+  .photo-float .cap { padding: 10px 2px 0; font-size: 11.5px; color: #8A8A78; }
+  @media (max-width: 640px) { .photo-float { float: none; width: 100%; margin: 20px 0; } }
 
   /* ── CONVERSATION MOCK ── */
   .chat-mock {
@@ -146,10 +147,20 @@
     </div>
   </section>
 
+  <div class="wrap">
+    <div class="editorial-photo">
+      <img src="https://images.pexels.com/photos/3989314/pexels-photo-3989314.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Morning movement, tracked by the ring" loading="lazy">
+    </div>
+  </div>
+
   <section id="ring">
     <div class="wrap">
       <div class="eyebrow">The Ring</div>
       <h2>What it actually measures</h2>
+      <div class="photo-float">
+        <img src="https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Sleep, measured by the ring" loading="lazy">
+        <div class="cap">Willow reads real sleep data every morning.</div>
+      </div>
       <p class="voice" style="margin-top:14px; max-width:560px;">"No sensor, no claim. If the ring can't measure it yet, we say so — out loud, in the product, not in fine print."</p>
 
       <div class="charts-note">Sample data below, shaped like real logged output — not any one person's actual numbers.</div>
@@ -227,25 +238,6 @@
           <div class="metric-detail">Built for more than daily steps — real sport-mode sessions for a ride or a swim, with genuine water resistance so the ring stays on through the pool or open water, not just the shower.</div>
         </div>
       </div>
-
-      <div class="lifestyle-grid">
-        <div class="lifestyle-card">
-          <img src="https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Peaceful sleep, tracked by the ring" loading="lazy">
-          <div class="lifestyle-caption">Sleep<span>Willow's domain</span></div>
-        </div>
-        <div class="lifestyle-card">
-          <img src="https://images.pexels.com/photos/3989314/pexels-photo-3989314.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A morning run, tracked by the ring" loading="lazy">
-          <div class="lifestyle-caption">Movement<span>Hawthorn's domain</span></div>
-        </div>
-        <div class="lifestyle-card">
-          <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A quiet moment of mindfulness" loading="lazy">
-          <div class="lifestyle-caption">Stillness<span>Lotus's domain</span></div>
-        </div>
-        <div class="lifestyle-card">
-          <img src="https://images.pexels.com/photos/4519057/pexels-photo-4519057.jpeg?auto=compress&cs=tinysrgb&w=600" alt="A real, fresh meal" loading="lazy">
-          <div class="lifestyle-caption">Nutrition<span>Basil's domain</span></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -253,6 +245,10 @@
     <div class="wrap">
       <div class="eyebrow">Your Team</div>
       <h2>Five specialists, one coordinator</h2>
+      <div class="photo-float">
+        <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg?auto=compress&cs=tinysrgb&w=500" alt="A quiet moment of mindfulness" loading="lazy">
+        <div class="cap">Lotus builds toward moments like this one.</div>
+      </div>
       <p style="margin-top:14px; color:#6B7268; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
       <div class="team-grid">
         <div class="member-card">
@@ -324,6 +320,10 @@
     <div class="wrap">
       <div class="eyebrow">How We Build It</div>
       <h2>The rules that don't change, no matter what feature we're on</h2>
+      <div class="photo-float">
+        <img src="https://images.pexels.com/photos/4519057/pexels-photo-4519057.jpeg?auto=compress&cs=tinysrgb&w=500" alt="A real, fresh meal" loading="lazy">
+        <div class="cap">Basil's plans are built from what's actually on your plate.</div>
+      </div>
       <p style="margin-top:14px; color:#6B7268; max-width:600px;">Not a mission statement. These are the actual constraints that have shaped every real decision in this app so far — meant to keep shaping the next one too.</p>
 
       <div style="margin-top:44px;">
