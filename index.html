@@ -74,8 +74,22 @@
   .team-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
   .member-card {
     display: flex; gap: 18px; background: #FFFFFF; border: 1px solid rgba(35,42,32,0.08);
-    border-radius: 16px; padding: 22px;
+    border-radius: 16px; padding: 22px; cursor: pointer; transition: border-color 0.15s ease;
   }
+  .member-card:hover { border-color: rgba(35,42,32,0.18); }
+  .member-card .member-main { flex: 1; }
+  .member-card .expand-icon { font-size: 18px; color: #8A8A78; flex-shrink: 0; align-self: flex-start; transition: transform 0.2s ease; }
+  .member-card.open .expand-icon { transform: rotate(45deg); }
+  .member-detail {
+    display: none; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(35,42,32,0.08);
+    font-size: 13.5px; color: #4B5245; line-height: 1.6;
+  }
+  .member-card.open .member-detail { display: block; }
+  .hear-btn {
+    margin-top: 12px; padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(35,42,32,0.15);
+    background: #FBF9F3; font-family: 'Manrope', sans-serif; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .hear-btn:hover { background: #F0ECE0; }
   .seal {
     width: 58px; height: 58px; border-radius: 50%; flex-shrink: 0; position: relative;
     display: flex; align-items: center; justify-content: center;
@@ -274,45 +288,60 @@
       </div>
       <p style="margin-top:14px; color:#6B7268; max-width:560px;">Every plan any of them builds is grounded in what you actually told them, what the ring actually measures, and how the week actually went — never a generic template with your name on it.</p>
       <div class="team-grid">
-        <div class="member-card">
+        <div class="member-card" data-member="dr-sage">
           <div class="seal" style="background:linear-gradient(145deg,#A9CDAE,#5F7F63);">DS</div>
-          <div>
+          <div class="member-main">
             <h3>Dr. Sage</h3>
             <div class="member-role" style="color:#4F7A57;">Holistic Wellness Doctor — coordinator</div>
-            <div class="voice">"I bring together everything the team learns about you into one clear picture — and I'm the one who'll flag anything worth a real doctor's attention."</div>
+            <div class="voice intro-line">"Hi, I'm Dr. Sage. I bring together everything the team learns about you into one clear picture — and I'm the one who'll flag anything worth a real doctor's attention."</div>
+            <button class="hear-btn">🔊 Hear the intro</button>
+            <div class="member-detail">Before any report: I pull together everything the whole team knows about you into your real weekly report, and I'm the one who flags anything worth a real doctor's attention. I'll also tell you honestly if I think your goal itself needs recalibrating, based on how the real data's been going — you always get the final say on that. And I'm here for a general check-in anytime, not just during a scheduled report.</div>
           </div>
+          <div class="expand-icon">+</div>
         </div>
-        <div class="member-card">
+        <div class="member-card" data-member="willow">
           <div class="seal" style="background:linear-gradient(145deg,#98A5DE,#4C5AA0);">W</div>
-          <div>
+          <div class="member-main">
             <h3>Willow</h3>
             <div class="member-role" style="color:#5A6BC0;">Sleep Coach</div>
-            <div class="voice">"I look after your sleep. Most people don't realize how much a bad night explains the day after."</div>
+            <div class="voice intro-line">"I'm Willow — I look after your sleep. Most people don't realize how much a bad night explains the day after."</div>
+            <button class="hear-btn">🔊 Hear the intro</button>
+            <div class="member-detail">Before any report: I build you a real weekly sleep plan, and I adjust it week to week based on how you actually slept and what you actually followed through on, not just guesses. I've also got real wind-down tools — live white or brown noise, and an original bedtime story I write fresh and read to you. You can come talk to me anytime, not just during a report.</div>
           </div>
+          <div class="expand-icon">+</div>
         </div>
-        <div class="member-card">
+        <div class="member-card" data-member="lotus">
           <div class="seal" style="background:linear-gradient(145deg,#CBA8D6,#7A5589);">L</div>
-          <div>
+          <div class="member-main">
             <h3>Lotus</h3>
             <div class="member-role" style="color:#9662B0;">Mindfulness Coach</div>
-            <div class="voice">"I help you notice stress before it piles up — a few minutes a day is usually enough."</div>
+            <div class="voice intro-line">"I'm Lotus. I help you notice stress before it piles up — a few minutes a day is usually enough."</div>
+            <button class="hear-btn">🔊 Hear the intro</button>
+            <div class="member-detail">Before any report: I build you a real weekly mindfulness plan, adjusted based on how the week actually went. I also lead real, live guided sessions — box breathing, a short yoga sequence, or an affirmation walk — whenever you want one. You can talk to me anytime, at real length, not just for quick tips.</div>
           </div>
+          <div class="expand-icon">+</div>
         </div>
-        <div class="member-card">
+        <div class="member-card" data-member="hawthorn">
           <div class="seal" style="background:linear-gradient(145deg,#E6A183,#A85936);">H</div>
-          <div>
+          <div class="member-main">
             <h3>Hawthorn</h3>
             <div class="member-role" style="color:#B85A32;">Exercise Coach</div>
-            <div class="voice">"Not about punishing workouts, just moving in a way that actually fits your life."</div>
+            <div class="voice intro-line">"I'm Hawthorn — exercise. Not about punishing workouts, just moving in a way that actually fits your life."</div>
+            <button class="hear-btn">🔊 Hear the intro</button>
+            <div class="member-detail">Before any report: I build you a real weekly workout regimen, and I factor in your real recovery, sleep, and step data when I set the intensity — a rough week means an easier regimen, not a harder one. If your goal is steps, I track it automatically from your ring, no logging needed. Before each new week, I'll ask you to commit to it in your own words. I coordinate with Basil on nutrition timing too.</div>
           </div>
+          <div class="expand-icon">+</div>
         </div>
-        <div class="member-card">
+        <div class="member-card" data-member="basil">
           <div class="seal" style="background:linear-gradient(145deg,#B6D68A,#6B8F45);">B</div>
-          <div>
+          <div class="member-main">
             <h3>Basil</h3>
             <div class="member-role" style="color:#5E8F35;">Nutrition Coach</div>
-            <div class="voice">"I'm not here to police what you eat, just to help you see the patterns."</div>
+            <div class="voice intro-line">"I'm Basil — nutrition. I'm not here to police what you eat, just to help you see the patterns."</div>
+            <button class="hear-btn">🔊 Hear the intro</button>
+            <div class="member-detail">Before any report: I build you a real weekly meal plan, coordinated with whatever Hawthorn's got you doing for exercise. I can also estimate a meal's nutrition from a real photo you send. You can come talk to me anytime.</div>
           </div>
+          <div class="expand-icon">+</div>
         </div>
       </div>
 
@@ -392,6 +421,32 @@
   document.querySelectorAll('.ring-card').forEach(function(card) {
     card.addEventListener('click', function() {
       card.classList.toggle('open');
+    });
+  });
+
+  document.querySelectorAll('.member-card').forEach(function(card) {
+    card.addEventListener('click', function() {
+      card.classList.toggle('open');
+    });
+  });
+
+  // Real browser text-to-speech, not the app's own Azure voices —
+  // those are server-side and this is a static page. Still a real,
+  // working spoken intro, just the browser's own voice instead of
+  // Jenny/Aria/etc.
+  document.querySelectorAll('.hear-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation(); // don't also toggle the card open/closed
+      if (!('speechSynthesis' in window)) {
+        btn.textContent = 'Speech not supported in this browser';
+        return;
+      }
+      const card = btn.closest('.member-card');
+      const text = card.querySelector('.intro-line').textContent.replace(/^"|"$/g, '');
+      window.speechSynthesis.cancel(); // stop anything already playing
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.95;
+      window.speechSynthesis.speak(utter);
     });
   });
 </script>
