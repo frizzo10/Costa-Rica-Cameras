@@ -103,10 +103,15 @@
 
   /* ── PHOTOS — placed contextually within sections, not
      clustered together ── */
-  .hero-photo {
-    max-width: 420px; margin: 36px auto; border-radius: 20px; overflow: hidden;
+  .hero-collage {
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: 130px 130px;
+    gap: 10px; max-width: 640px; margin: 40px auto 0; border-radius: 20px; overflow: hidden;
   }
-  .hero-photo img { width: 100%; display: block; }
+  .hero-collage img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 14px; }
+  .hero-collage .big { grid-column: span 2; grid-row: span 2; }
+  @media (max-width: 560px) {
+    .hero-collage { grid-template-columns: repeat(4, 1fr); grid-template-rows: 90px 90px; gap: 6px; }
+  }
   .photo-float {
     float: right; width: 240px; border-radius: 16px; overflow: hidden; margin: 6px 0 20px 24px;
   }
@@ -141,8 +146,12 @@
     <div class="wrap">
       <div class="eyebrow">myDrSage</div>
       <h1>A ring on your finger.<br>A team behind it.</h1>
-      <div class="hero-photo">
-        <img src="https://images.pexels.com/photos/34241802/pexels-photo-34241802.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="The ring itself" loading="lazy">
+      <div class="hero-collage">
+        <img class="big" src="https://images.pexels.com/photos/34241802/pexels-photo-34241802.jpeg?auto=compress&cs=tinysrgb&w=800" alt="The ring itself" loading="lazy">
+        <img src="https://images.pexels.com/photos/3771069/pexels-photo-3771069.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Sleep, measured by the ring" loading="lazy">
+        <img src="https://images.pexels.com/photos/3989314/pexels-photo-3989314.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Movement, tracked automatically" loading="lazy">
+        <img src="https://images.pexels.com/photos/3759657/pexels-photo-3759657.jpeg?auto=compress&cs=tinysrgb&w=400" alt="A moment of mindfulness" loading="lazy">
+        <img src="https://images.pexels.com/photos/4519057/pexels-photo-4519057.jpeg?auto=compress&cs=tinysrgb&w=400" alt="A real, fresh meal" loading="lazy">
       </div>
       <div class="sub">"Between a health coach and your doctor" was the old pitch. The real one: a ring that actually measures things, and a team of specialists who never pretend to know more than the data says.</div>
       <div class="nav-row">
