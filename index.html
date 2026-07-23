@@ -49,6 +49,20 @@
   }
   .nav-row a:hover { color: #232A20; border-bottom-color: #C9A75C; }
 
+  .waitlist-form {
+    display: flex; gap: 10px; max-width: 420px; margin: 32px auto 0; flex-wrap: wrap; justify-content: center;
+  }
+  .waitlist-form input[type="email"] {
+    flex: 1; min-width: 220px; padding: 14px 16px; border-radius: 12px; border: 1px solid rgba(35,42,32,0.15);
+    background: #FFFFFF; font-family: 'Manrope', sans-serif; font-size: 14px; color: #232A20;
+  }
+  .waitlist-form button {
+    padding: 14px 24px; border-radius: 12px; border: none; background: #232A20; color: #F8F4EA;
+    font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .waitlist-note { font-size: 12px; color: #8A8A78; margin-top: 10px; }
+  #waitlist-success { display: none; font-family: 'Fraunces', serif; font-style: italic; font-size: 15px; color: #4F7A57; margin-top: 32px; }
+
   /* ── CHARTS (illustrative sample data — real charts, real shapes,
      just not tied to any one person on a public showcase page) ── */
   .charts-note { font-size: 12.5px; color: #8A8A78; margin: 30px 0 6px; }
@@ -209,6 +223,16 @@
         <img src="https://images.pexels.com/photos/4519057/pexels-photo-4519057.jpeg?auto=compress&cs=tinysrgb&w=400" alt="A real, fresh meal" loading="lazy">
       </div>
       <div class="sub">"Between a health coach and your doctor" was the old pitch. The real one: a ring that actually measures things, and a team of specialists who never pretend to know more than the data says.</div>
+
+      <form id="waitlist-form" class="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="waitlist">
+        <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Join the beta</button>
+      </form>
+      <div class="waitlist-note">No native app yet \u2014 real early access, not a mailing list.</div>
+      <div id="waitlist-success">You're on the list \u2014 we'll be in touch as real spots open up.</div>
+
       <div class="nav-row">
         <a href="#ring">The Ring</a>
         <a href="#team">The Team</a>
@@ -536,6 +560,29 @@
       card.classList.toggle('open');
     });
   });
+
+  // Real Netlify Forms submission, no full page reload \u2014 the
+  // form itself works even with JS disabled (Netlify handles the
+  // plain POST natively), this just makes it feel like part of
+  // the page instead of a redirect.
+  const waitlistForm = document.getElementById('waitlist-form');
+  if (waitlistForm) {
+    waitlistForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(waitlistForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data).toString(),
+      }).then(function() {
+        waitlistForm.style.display = 'none';
+        document.querySelector('.waitlist-note').style.display = 'none';
+        document.getElementById('waitlist-success').style.display = 'block';
+      }).catch(function() {
+        waitlistForm.querySelector('button').textContent = 'Try again';
+      });
+    });
+  }
 
   document.querySelectorAll('.member-card').forEach(function(card) {
     card.addEventListener('click', function() {
